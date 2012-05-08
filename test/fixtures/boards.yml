@@ -1,0 +1,25 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  game: 
+  ele1: MyString
+  ele2: MyString
+  ele3: MyString
+  ele4: MyString
+  ele5: MyString
+  ele6: MyString
+  ele7: MyString
+  ele8: MyString
+  ele9: MyString
+
+two:
+  game: 
+  ele1: MyString
+  ele2: MyString
+  ele3: MyString
+  ele4: MyString
+  ele5: MyString
+  ele6: MyString
+  ele7: MyString
+  ele8: MyString
+  ele9: MyString

@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user1: 
+  user2: 
+  started: false
+  ended: false
+
+two:
+  user1: 
+  user2: 
+  started: false
+  ended: false
