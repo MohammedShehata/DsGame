@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def index
   end
   
@@ -8,6 +9,12 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new params[:user]
-    @user.save
+    if @user.save
+      @games = Game.where("started = false and ended = false")
+      redirect_to games_path
+    else
+      render :action => "new"
+    end
   end
+  
 end
