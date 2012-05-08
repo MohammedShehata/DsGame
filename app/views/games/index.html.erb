@@ -1,0 +1,22 @@
+
+				<%= link_to 'New', :action => "new" %>
+				<table class="table table-striped" >
+					<thead>
+						<tr>
+							<th>Game id</th>
+							<th>UserName</th>
+							<th>Join</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @games.each do |game| %>
+						<tr>
+							<td><%= game.id %></td>
+							<td><%= game.user1.id %></td>
+							<td><%= link_to 'Join', join_game_path(game), :class =>'btn btn-small btn-primary' %>
+							</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+				
