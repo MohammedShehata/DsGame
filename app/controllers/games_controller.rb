@@ -4,7 +4,8 @@ class GamesController < ApplicationController
   end
   def new
     @game = Game.new
-    
+    @game.started = false
+    @game.ended = false
     @game.save  
   end
 end
