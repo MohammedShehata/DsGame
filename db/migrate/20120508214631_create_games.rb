@@ -3,6 +3,7 @@ class CreateGames < ActiveRecord::Migration
     create_table :games do |t|
       t.references :user1
       t.references :user2
+      t.references :turn
       t.boolean :started
       t.boolean :ended
 
