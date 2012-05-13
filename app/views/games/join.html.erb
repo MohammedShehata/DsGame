@@ -24,7 +24,7 @@
 		if(changes && !gameEnded){
 			$.getJSON('/games/changes.json?game=' + <%= @game.id %>
 			, function(data) {
-				for(var i = 1; i <= data.length; i++) {
+				for(var i = 1; i < data.length; i++) {
 					if(data[i-1] == null)
 						document.getElementById("e" + i).innerHTML = '';
 					else
