@@ -60,9 +60,9 @@ class GamesController < ApplicationController
   def play
     @game = Game.find params[:game]
     if(@game.turn == @game.user1)
-      @game.turn = user2
+      @game.update_attributes :turn => user2
     else
-      @game.turn = user1
+      @game.update_attributes :turn => user1
     end
     @board = Board.where("game_id = #{params[:game]}")[0]
     bool = @board.update_attributes "ele" + params[:index] => params[:data]
