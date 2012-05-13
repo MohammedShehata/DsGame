@@ -45,5 +45,6 @@ function display (index) {
 	  	}else{
 	  		document.getElementById("e"+index).innerHTML="O";
 	  	}
+	  	changes=false;
 	  }
 	}
