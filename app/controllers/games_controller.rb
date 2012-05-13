@@ -52,6 +52,8 @@ class GamesController < ApplicationController
     a.push(@board.ele7)
     a.push(@board.ele8)
     a.push(@board.ele9)
+    a.push(check(@board))
+    
     respond_to do |format|
       format.json {render :json => a}
     end
@@ -65,7 +67,8 @@ class GamesController < ApplicationController
       @game.update_attributes :turn => @game.user1
     end
     @board = Board.where("game_id = #{params[:game]}")[0]
-    bool = @board.update_attributes "ele" + params[:index] => params[:data]
+    @board.update_attributes "ele" + params[:index] => params[:data]
+    bool = check @board
     respond_to do |format|
       format.json {render :json => bool}
     end
@@ -78,4 +81,29 @@ class GamesController < ApplicationController
     #redirect_to "join"  
   end
    
+  def check board
+    check = ""
+    if((board.ele1 == board.ele2 && board.ele2 == board.ele3 && board.ele1 != nil) || 
+      (board.ele4 == board.ele5 && board.ele5 == board.ele6  && board.ele4 != nil) || 
+      (board.ele7 == board.ele8 && board.ele8 == board.ele8  && board.ele7 != nil) || 
+      (board.ele7 == board.ele8 && board.ele8 == board.ele8  && board.ele7 != nil) || 
+      (board.ele1 == board.ele4 && board.ele4 == board.ele7  && board.ele1 != nil) || 
+      (board.ele2 == board.ele5 && board.ele5 == board.ele8  && board.ele2 != nil) || 
+      (board.ele3 == board.ele6 && board.ele6 == board.ele9  && board.ele3 != nil) || 
+      (board.ele1 == board.ele5 && board.ele5 == board.ele9  && board.ele1 != nil) ||
+      (board.ele3 == board.ele5 && board.ele5 == board.ele7  && board.ele3 != nil))
+      if(board.ele1 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end
+    elsif(board.ele1 == nil || board.ele2 == nil  || board.ele3 == nil ||
+      board.ele4 == nil || board.ele5 == nil  || board.ele6 == nil ||
+      board.ele7 == nil || board.ele8 == nil  || board.ele9 == nil)
+        check = "Cont"
+    else
+        check = "Draw"
+    end
+  end
+
 end
