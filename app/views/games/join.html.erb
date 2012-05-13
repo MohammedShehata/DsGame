@@ -1,4 +1,8 @@
+<p><%= "X      = " + @game.user1.name %></p>
+<p><%= "O(you) = " + session[:user].name %></p>
+
 <%= render 'game' ,:game => @game %>
+
 <p id="result" ></p>
 <script type="text/javascript">
 		var turn=false;

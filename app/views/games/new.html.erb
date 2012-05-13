@@ -1,3 +1,6 @@
+<p><%= "X(you) = " + session[:user].name %></p>
+<p><%= "O      = " %><span id="user2">waiting...!</span></p>
+
 <%= render 'game' ,:game => @game %>
 <p id="result" ></p>
 <script type="text/javascript">
@@ -8,26 +11,27 @@
 	var changes=false;
 	var gameEnded=false;
 	var interv = setInterval(function(){
-	$.getJSON('/games/isstarted.json?id=' +<%= @game.id %>, function(isstarted)
-	{
-	if(isstarted)
-	{
-	started = isstarted;
-	window.clearInterval(interv)
-	}
-	});
+		$.getJSON('/games/isstarted.json?id=' +<%= @game.id %>, function(isstarted)
+		{
+			if(isstarted[0])
+			{
+				started = true;
+				document.getElementById("user2").innerHTML = isstarted[1] 
+				window.clearInterval(interv)
+			}
+		});
 	}
 	,time);
 	var turncheck = setInterval(function(){
-	if(started && !gameEnded){
-	$.getJSON('/games/turn.json?game=' + <%= @game.id %>+'&user='+<%= @game.user1.id %>, function(isMyTurn)
-	{
-	turn=isMyTurn;
-	if(turn && !changes){
-		changes=true;
-	}
-	});
-	}
+		if(started && !gameEnded){
+			$.getJSON('/games/turn.json?game=' + <%= @game.id %>+'&user='+<%= @game.user1.id %>, function(isMyTurn)
+			{
+				turn=isMyTurn;
+				if(turn && !changes){
+					changes=true;
+				}
+			});
+		}
 	}
 	,time);
 
