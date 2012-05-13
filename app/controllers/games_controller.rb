@@ -20,4 +20,11 @@ class GamesController < ApplicationController
     puts "showwwwwwwwwwwwwwwwwwwwwwwwwwwww"
   end
   
+  def isstarted
+    @game = Game.find params[:id]
+    bool = @game.started
+    respond_to do |format|
+      format.json {render :json => bool}
+    end
+  end
 end
