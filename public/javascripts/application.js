@@ -38,4 +38,12 @@ function hide(id){
 	var div = $("#"+id);
 	div.hide();
 }
-
+function display (index) {
+	  if(turn){
+	  	if(user==1){
+	  		document.getElementById("e"+index).innerHTML="X";
+	  	}else{
+	  		document.getElementById("e"+index).innerHTML="O";
+	  	}
+	  }
+	}
