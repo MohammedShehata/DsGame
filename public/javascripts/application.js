@@ -40,7 +40,7 @@ function hide(id){
 	div.hide();
 }
 function display (gameid,index) {
-	  if(turn && started){
+	  if(turn && started && !gameEnded){
 		if(document.getElementById("e"+index).innerHTML==""){  	
 		  	if(user==1){
 		  		document.getElementById("e"+index).innerHTML="X";
