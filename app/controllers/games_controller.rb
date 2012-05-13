@@ -1,6 +1,7 @@
 class GamesController < ApplicationController
   def index
     @games = Game.where("started = false and ended = false")
+    @watch = Game.where("started = true and ended = false")
     games_json = @games.map(&:fat7y)
     respond_to do |format|
       format.html
@@ -11,7 +12,7 @@ class GamesController < ApplicationController
     @game = Game.new
     @game.board = Board.new
     @game.board.game = @game
-    @game.user1 = User.first
+    @game.user1 = session[:user]
     @game.turn = @game.user1
     puts "#{@game.user1.id}"
     @game.started = false
@@ -27,7 +28,11 @@ class GamesController < ApplicationController
     @game = Game.find params[:id]
     bool = @game.started
     respond_to do |format|
-      format.json {render :json => bool}
+      if(!bool)
+        format.json {render :json => [bool]}
+      else
+        format.json {render :json => [bool, @game.user2.name]}
+      end
     end
   end
 
@@ -56,7 +61,7 @@ class GamesController < ApplicationController
     a.push(check_var)
     if(check_var != "Cont")
       @board.game.ended = true
-    
+    end
     respond_to do |format|
       format.json {render :json => a}
     end
@@ -74,6 +79,7 @@ class GamesController < ApplicationController
     check_var = check @board
     if(check_var != "Cont")
       @board.game.ended = true
+    end
     respond_to do |format|
       format.json {render :json => check_var}
     end
@@ -81,7 +87,7 @@ class GamesController < ApplicationController
   
   def join
     @game = Game.find params[:id]
-    @game.update_attributes :user2 => User.where("id = 2")[0]
+    @game.update_attributes :user2 => session[:user]
     @game.update_attributes :started =>true
     #redirect_to "join"  
   end
@@ -145,5 +151,10 @@ class GamesController < ApplicationController
     end
     return check
   end
-
+  
+  # -----------------------------------------------------------------------------
+  
+  def watch
+    @game = Game.find params[:id]
+  end 
 end

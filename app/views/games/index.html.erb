@@ -31,3 +31,24 @@
 	}
 	,time);
 </script>
+				<!-- For watching the games  -->
+<table>
+	<thead>
+		<tr>
+			<th>Game_id</th>
+			<th>User1_Name</th>
+			<th>User2_Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @watch.each do |game| %>
+		<tr>
+			<td><%= game.id %></td>
+			<td><%= game.user1.name %></td>
+			<td><%= game.user2.name %></td>
+			<td><%= link_to 'watch', "/games/join?id=" + game.id.to_s%>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
