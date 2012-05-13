@@ -12,7 +12,6 @@ function check(data){
 	   var gout= false ;
 	  for (var j=0;!gout && j < data.length; j++) {
 		if(data[j][0]==idArr[i]){
-		
 			gout=true;
 		}
 	  };
@@ -28,7 +27,7 @@ function check(data){
 		}
 		else
 		{
-		var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td><a href='/games/new."+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
+		var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td><a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
 		   $("#showTable").append(newRow);
 		}
 
@@ -45,7 +44,7 @@ function display (gameid,index) {
 		  	if(user==1){
 		  		document.getElementById("e"+index).innerHTML="X";
 		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=X', function(data)
-				{	
+				{
 					if(data=="X_Win"){
 						gameEnded=true;
 						document.getElementById("result").innerHTML="You won";
@@ -61,12 +60,13 @@ function display (gameid,index) {
 		  		document.getElementById("e"+index).innerHTML="O";
 		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=O', function(data)
 				{
+					alert(data);
 					if(data=="X_Win"){
 						gameEnded=true;
-						document.getElementById("result").innerHTML="You won";
+						document.getElementById("result").innerHTML="You lost";
 					}else if(data=="O_Win"){
 						gameEnded=true;
-						document.getElementById("result").innerHTML="You Lost";
+						document.getElementById("result").innerHTML="You won";
 					}else if(data=="Draw"){
 						gameEnded=true;
 						document.getElementById("result").innerHTML="Game Draw";
