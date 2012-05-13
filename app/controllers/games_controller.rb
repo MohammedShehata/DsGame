@@ -103,6 +103,7 @@ class GamesController < ApplicationController
     else
         check = "Draw"
     end
+    return bool
   end
 
 end
