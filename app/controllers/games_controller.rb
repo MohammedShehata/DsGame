@@ -12,6 +12,7 @@ class GamesController < ApplicationController
     @game.board = Board.new
     @game.board.game = @game
     @game.user1 = User.first
+    @game.turn = @game.user1
     puts "#{@game.user1.id}"
     @game.started = false
     @game.ended = false
@@ -57,6 +58,12 @@ class GamesController < ApplicationController
   end
   
   def play
+    @game = Game.find params[:game]
+    if(@game.turn == @game.user1)
+      @game.turn = user2
+    else
+      @game.turn = user1
+    end
     @board = Board.where("game_id = #{params[:game]}")[0]
     bool = @board.update_attributes "ele" + params[:index] => params[:data]
     respond_to do |format|
