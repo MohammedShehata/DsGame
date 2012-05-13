@@ -69,5 +69,11 @@ class GamesController < ApplicationController
     respond_to do |format|
       format.json {render :json => bool}
     end
-  end  
+  end 
+  
+  def join
+    @game = Game.find params[:id]
+    #redirect_to "join"  
+  end
+   
 end
