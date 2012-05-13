@@ -39,7 +39,7 @@ function hide(id){
 	div.hide();
 }
 function display (index) {
-	  if(turn){
+	  if(turn && started){
 	  	if(user==1){
 	  		document.getElementById("e"+index).innerHTML="X";
 	  	}else{
