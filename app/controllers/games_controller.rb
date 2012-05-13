@@ -52,7 +52,10 @@ class GamesController < ApplicationController
     a.push(@board.ele7)
     a.push(@board.ele8)
     a.push(@board.ele9)
-    a.push(check(@board))
+    check_var = check(@board) 
+    a.push(check_var)
+    if(check_var != "Cont")
+      @board.game.ended = true
     
     respond_to do |format|
       format.json {render :json => a}
@@ -68,9 +71,11 @@ class GamesController < ApplicationController
     end
     @board = Board.where("game_id = #{params[:game]}")[0]
     @board.update_attributes "ele" + params[:index] => params[:data]
-    bool = check @board
+    check_var = check @board
+    if(check_var != "Cont")
+      @board.game.ended = true
     respond_to do |format|
-      format.json {render :json => bool}
+      format.json {render :json => check_var}
     end
   end 
   
