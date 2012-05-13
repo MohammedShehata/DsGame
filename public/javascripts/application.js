@@ -45,12 +45,32 @@ function display (gameid,index) {
 		  	if(user==1){
 		  		document.getElementById("e"+index).innerHTML="X";
 		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=X', function(data)
-				{
+				{	
+					if(data=="X_Win"){
+						gameEnded=true;
+						document.getElementById("result").innerHTML="You won";
+					}else if(data=="O_Win"){
+						gameEnded=true;
+						document.getElementById("result").innerHTML="You Lost";
+					}else if(data=="Draw"){
+						gameEnded=true;
+						document.getElementById("result").innerHTML="Game Draw";
+					}
 				});
 		  	}else{
 		  		document.getElementById("e"+index).innerHTML="O";
 		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=O', function(data)
 				{
+					if(data=="X_Win"){
+						gameEnded=true;
+						document.getElementById("result").innerHTML="You won";
+					}else if(data=="O_Win"){
+						gameEnded=true;
+						document.getElementById("result").innerHTML="You Lost";
+					}else if(data=="Draw"){
+						gameEnded=true;
+						document.getElementById("result").innerHTML="Game Draw";
+					}
 				});
 		  	}
 	  	}
