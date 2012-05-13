@@ -86,7 +86,6 @@ class GamesController < ApplicationController
     if((board.ele1 == board.ele2 && board.ele2 == board.ele3 && board.ele1 != nil) || 
       (board.ele4 == board.ele5 && board.ele5 == board.ele6  && board.ele4 != nil) || 
       (board.ele7 == board.ele8 && board.ele8 == board.ele8  && board.ele7 != nil) || 
-      (board.ele7 == board.ele8 && board.ele8 == board.ele8  && board.ele7 != nil) || 
       (board.ele1 == board.ele4 && board.ele4 == board.ele7  && board.ele1 != nil) || 
       (board.ele2 == board.ele5 && board.ele5 == board.ele8  && board.ele2 != nil) || 
       (board.ele3 == board.ele6 && board.ele6 == board.ele9  && board.ele3 != nil) || 
