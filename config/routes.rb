@@ -1,6 +1,10 @@
 DsGame::Application.routes.draw do
   root :to =>"users#new"
   match "games/isstarted" => "games#isstarted"
+  match "games/turn" => "games#turn"
+  match "games/changes" => "games#changes"
+  match "games/play" => "games#play"
+  
   resources :users
   resources :games
   # The priority is based upon order of creation:
