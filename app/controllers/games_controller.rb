@@ -83,15 +83,50 @@ class GamesController < ApplicationController
    
   def check board
     check = ""
-    if((board.ele1 == board.ele2 && board.ele2 == board.ele3 && board.ele1 != nil) || 
-      (board.ele4 == board.ele5 && board.ele5 == board.ele6  && board.ele4 != nil) || 
-      (board.ele7 == board.ele8 && board.ele8 == board.ele8  && board.ele7 != nil) || 
-      (board.ele1 == board.ele4 && board.ele4 == board.ele7  && board.ele1 != nil) || 
-      (board.ele2 == board.ele5 && board.ele5 == board.ele8  && board.ele2 != nil) || 
-      (board.ele3 == board.ele6 && board.ele6 == board.ele9  && board.ele3 != nil) || 
-      (board.ele1 == board.ele5 && board.ele5 == board.ele9  && board.ele1 != nil) ||
-      (board.ele3 == board.ele5 && board.ele5 == board.ele7  && board.ele3 != nil))
+    if(board.ele1 == board.ele2 && board.ele2 == board.ele3 && board.ele1 != nil)
       if(board.ele1 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end
+    elsif(board.ele4 == board.ele5 && board.ele5 == board.ele6  && board.ele4 != nil)
+      if(board.ele4 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end
+    elsif(board.ele7 == board.ele8 && board.ele8 == board.ele9  && board.ele7 != nil)
+      if(board.ele7 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end   
+    elsif(board.ele1 == board.ele4 && board.ele4 == board.ele7  && board.ele1 != nil)
+      if(board.ele1 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end   
+    elsif(board.ele2 == board.ele5 && board.ele5 == board.ele8  && board.ele2 != nil)
+      if(board.ele2 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end
+    elsif(board.ele3 == board.ele6 && board.ele6 == board.ele9  && board.ele3 != nil)
+      if(board.ele3 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end
+    elsif(board.ele1 == board.ele5 && board.ele5 == board.ele9  && board.ele1 != nil)
+      if(board.ele1 == "X")
+        check = "X_Win"
+      else
+        check = "O_Win"
+      end   
+    elsif(board.ele3 == board.ele5 && board.ele5 == board.ele7  && board.ele3 != nil)
+      if(board.ele3 == "X")
         check = "X_Win"
       else
         check = "O_Win"
