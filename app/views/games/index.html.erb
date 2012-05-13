@@ -12,7 +12,7 @@
 		<tr id="<%= game.id %>" >
 			<td><%= game.id %></td>
 			<td><%= game.user1.name %></td>
-			<td><%= link_to 'Join', "games/join?id=" + game.id.to_s, :class =>'btn btn-small btn-primary' %>
+			<td><%= link_to 'Join', "/games/join?id=" + game.id.to_s, :class =>'btn btn-small btn-primary' %>
 			</td>
 		</tr>
 		<% end %>

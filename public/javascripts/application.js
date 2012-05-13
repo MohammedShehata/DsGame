@@ -12,6 +12,7 @@ function check(data){
 	   var gout= false ;
 	  for (var j=0;!gout && j < data.length; j++) {
 		if(data[j][0]==idArr[i]){
+		
 			gout=true;
 		}
 	  };

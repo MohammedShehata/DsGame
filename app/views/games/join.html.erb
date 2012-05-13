@@ -5,27 +5,14 @@
 	var time = 3000;
 	var started = true;
 	var changes=false;
-	// var interv = setInterval(function(){
-	// $.getJSON('/games/isstarted.json?id=' +<%= @game.id %>, function(isstarted)
-	// {
-	// if(isstarted)
-	// {
-	// started = isstarted;
-	// window.clearInterval(interv)
-	// }
-	// });
-	// }
-	// ,time);
 	var turncheck = setInterval(function(){
-	if(started){
-	$.getJSON('/games/turn.json?game=' + <%= @game.id %>+'&user='+<%= @game.user1.id %>, function(isMyTurn)
+	$.getJSON('/games/turn.json?game=' + <%= @game.id %>+'&user='+<%= @game.user2.id %>, function(isMyTurn)
 	{
 	turn=isMyTurn;
 	if(turn && !changes){
 		changes=true;
 	}
 	});
-	}
 	}
 	,time);
 

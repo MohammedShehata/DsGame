@@ -73,6 +73,8 @@ class GamesController < ApplicationController
   
   def join
     @game = Game.find params[:id]
+    @game.update_attributes :user2 => User.where("id = 2")[0]
+    @game.update_attributes :started =>true
     #redirect_to "join"  
   end
    
