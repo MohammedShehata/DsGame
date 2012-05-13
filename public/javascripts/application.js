@@ -38,13 +38,21 @@ function hide(id){
 	var div = $("#"+id);
 	div.hide();
 }
-function display (index) {
+function display (gameid,index) {
 	  if(turn && started){
 	  	if(user==1){
 	  		document.getElementById("e"+index).innerHTML="X";
+	  		$.getJSON('/play.json?game='+gameid+'index='+index+'&data=X', function(data)
+			{
+			});
 	  	}else{
 	  		document.getElementById("e"+index).innerHTML="O";
+	  		$.getJSON('/play.json?game='+gameid+'index='+index+'&data=O', function(data)
+			{
+			});
 	  	}
+	  	
+		turn=false;
 	  	changes=false;
 	  }
 	}
