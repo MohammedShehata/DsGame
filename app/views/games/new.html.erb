@@ -3,11 +3,15 @@
 	var turn=true;
 	var user=0;
 	var time = 3000;
-	setInterval(function(){
+	var started = false;
+	var interv = setInterval(function(){
 		$.getJSON('/games/isstarted.json?id=' + <%= @game.id %>, function(isstarted)
 		{
-			alert("hi");
-			alert(isstarted);
+			if(isstarted)
+			{
+				started = isstarted;
+				window.clearInterval(interv)
+			}
 		});
 	}
 	,time);
