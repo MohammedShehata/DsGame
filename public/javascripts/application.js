@@ -60,7 +60,6 @@ function display (gameid,index) {
 		  		document.getElementById("e"+index).innerHTML="O";
 		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=O', function(data)
 				{
-					alert(data);
 					if(data=="X_Win"){
 						gameEnded=true;
 						document.getElementById("result").innerHTML="You lost";
@@ -75,6 +74,6 @@ function display (gameid,index) {
 		  	}
 	  	}
 		turn=false;
-	  	changes=false;
+	  	// changes=false;
 	  }
 	}

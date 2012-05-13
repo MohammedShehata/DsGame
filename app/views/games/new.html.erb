@@ -32,7 +32,7 @@
 	,time);
 
 	var changesCheck = setInterval(function(){
-		if(changes && !gameEnded){
+		if(changes && !gameEnded ){
 			$.getJSON('/games/changes.json?game=' + <%= @game.id %>
 			, function(data) {
 				for(var i = 1; i < data.length; i++) {
@@ -43,7 +43,7 @@
 				};
 				if(data[data.length-1]=="X_Win"){
 						gameEnded=true;
-						document.getElementById("result").innerHTML="You Lost";
+						document.getElementById("result").innerHTML="You Won";
 					}else if(data[data.length-1]=="O_Win"){
 						gameEnded=true;
 						document.getElementById("result").innerHTML="You Lost";
