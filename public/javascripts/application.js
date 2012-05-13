@@ -40,18 +40,19 @@ function hide(id){
 }
 function display (gameid,index) {
 	  if(turn && started){
-	  	if(user==1){
-	  		document.getElementById("e"+index).innerHTML="X";
-	  		$.getJSON('/play.json?game='+gameid+'index='+index+'&data=X', function(data)
-			{
-			});
-	  	}else{
-	  		document.getElementById("e"+index).innerHTML="O";
-	  		$.getJSON('/play.json?game='+gameid+'index='+index+'&data=O', function(data)
-			{
-			});
+		if(document.getElementById("e"+index).innerHTML==""){  	
+		  	if(user==1){
+		  		document.getElementById("e"+index).innerHTML="X";
+		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=X', function(data)
+				{
+				});
+		  	}else{
+		  		document.getElementById("e"+index).innerHTML="O";
+		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=O', function(data)
+				{
+				});
+		  	}
 	  	}
-	  	
 		turn=false;
 	  	changes=false;
 	  }

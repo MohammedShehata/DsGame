@@ -1,46 +1,46 @@
 <%= render 'game' ,:game => @game %>
 <script type="text/javascript">
-	var turn=true;
+		var turn=true;
 	var user=1;
 	var time = 3000;
 	var started = false;
 	var changes=false;
 	var interv = setInterval(function(){
-		$.getJSON('/games/isstarted.json?id=' + <%= @game.id %>, function(isstarted)
-		{
-			if(isstarted)
-			{
-				started = isstarted;
-				window.clearInterval(interv)
-			}
-		});
+	$.getJSON('/games/isstarted.json?id=' +<%= @game.id %>, function(isstarted)
+	{
+	if(isstarted)
+	{
+	started = isstarted;
+	window.clearInterval(interv)
+	}
+	});
 	}
 	,time);
+	var turncheck = setInterval(function(){
 	if(started){
-		var turncheck = setInterval(function(){
-			$.getJSON('/games/turn.json?game=' + <%= @game.id %>+'&user='+<%= @game.user1.id %>, function(isMyTurn)
-			{
-				turn=isMyTurn;
-				if(turn && !changes){
-					changes=true;
-				}
-			});
-		}
-		,time);
+	$.getJSON('/games/turn.json?game=' + <%= @game.id %>+'&user='+<%= @game.user1.id %>, function(isMyTurn)
+	{
+	turn=isMyTurn;
+	if(turn && !changes){
+	changes=true;
 	}
-	if(changes){
-		var changesCheck = setInterval(function(){
-			$.getJSON('/games/changes.json?game=' + <%= @game.id %>, function(data)
-			{
-				for (var i=0; i < data.length; i++) {
-				 	if(data[i]==null)
-				 		document.getElementById("e"+i).innerHTML='';
-			 		else
-				 		document.getElementById("e"+i).innerHTML=data[i];
+	});
+	}
+	}
+	,time);
+
+	var changesCheck = setInterval(function(){
+		if(changes){
+			$.getJSON('/games/changes.json?game=' + <%= @game.id %>
+			, function(data) {
+				for(var i = 0; i < data.length; i++) {
+					if(data[i] == null)
+						document.getElementById("e" + i).innerHTML = '';
+					else
+						document.getElementById("e" + i).innerHTML = data[i];
 				};
-				
 			});
+			}
 		}
-		,1000);
-	}
+		,2000);
 </script>
