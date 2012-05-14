@@ -5,6 +5,6 @@ class Game < ActiveRecord::Base
   has_one :board
   
   def fat7y
-    [self.id, self.user1.name]
+    [self.id, self.user1.name, self.started]
   end
 end

@@ -1,7 +1,6 @@
 class GamesController < ApplicationController
   def index
-    @games = Game.where("started = false and ended = false")
-    @watch = Game.where("started = true and ended = false")
+    @games = Game.where("ended = false")
     games_json = @games.map(&:fat7y)
     respond_to do |format|
       format.html
