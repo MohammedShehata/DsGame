@@ -17,18 +17,31 @@ function check(data){
 	  };
 	  if(!gout){
 	  	hide(idArr[i]);
+	  }else{
+	  		if(!data[i][2]){
+	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a>"
+			}else{
+	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Join</a>"
+			}
+
 	  }
 	};
 	for (var i=0; i < data.length; i++) {
 	  gameID=data[i][0];
 	  user1Name=data[i][1];
+	  //true == watch else join data[i][2]
 		if(document.getElementById(gameID))
 		{
 		}
 		else
 		{
-		var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td><a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
+			if(!data[i][2]){
+				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
+		   		$("#showTable").append(newRow);
+			}else{
+				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
 		   $("#showTable").append(newRow);
+			}
 		}
 
 	};
