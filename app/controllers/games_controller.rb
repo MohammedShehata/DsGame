@@ -1,4 +1,13 @@
 class GamesController < ApplicationController
+  before_filter :check_user
+  def check_user
+    if session[:user]
+      return true 
+    else
+      redirect_to new_user_path
+    end
+  end
+    
   def index
     @games = Game.where("ended = false")
     games_json = @games.map(&:fat7y)
