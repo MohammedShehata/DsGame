@@ -30,13 +30,13 @@ var changesCheck = setInterval(function(){
 						document.getElementById("e" + i).innerHTML = data[i-1];
 				};
 				if(data[data.length-1]=="X_Win"){
-						// window.clearInterval(changesCheck);
+						window.clearInterval(changesCheck);
 						document.getElementById("result").innerHTML="<%= @game.user1.name %> Won";
 					}else if(data[data.length-1]=="O_Win"){
-						// window.clearInterval(changesCheck);
+						window.clearInterval(changesCheck);
 						document.getElementById("result").innerHTML="<%= @game.user2.name %> Won";
 					}else if(data[data.length-1]=="Draw"){
-						// window.clearInterval(changesCheck);
+						window.clearInterval(changesCheck);
 						document.getElementById("result").innerHTML="Game Draw";
 					}
 			});
