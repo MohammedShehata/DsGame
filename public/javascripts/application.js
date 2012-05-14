@@ -3,43 +3,43 @@
 
 function check(data){
 	var idArr = [];
-	  gameID=data[i][0];
 	var trs = document.getElementsByTagName("tr");
 	for(var i=0;i<trs.length;i++)
 	{
 	   idArr.push(trs[i].id);
 	}
 	for (var i=0; i < idArr.length; i++) {
-	   var gout= false ;
+	  var gout= false ;
 	  for (var j=0;!gout && j < data.length; j++) {
 		if(data[j][0]==idArr[i]){
-			gout=true;
+			var gameID=data[j][0];
+	  		gout=true;
+	  		var isWatch=data[j][3];
+	  		if(!isWatch){
+	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a>"
+			}else{
+				document.getElementById("td"+gameID).innerHTML ="<a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Watch</a>"
+			}
 		}
 	  };
 	  if(!gout){
 	  	hide(idArr[i]);
-	  }else{
-	  		if(!data[i][2]){
-	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a>"
-			}else{
-	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Join</a>"
-			}
-
 	  }
 	};
 	for (var i=0; i < data.length; i++) {
 	  user1Name=data[i][1];
-	  //true == watch else join data[i][2]
+	  var gameID=data[i][0];
+	  	//true == watch else join data[i][2]
 		if(document.getElementById(gameID))
 		{
 		}
 		else
 		{
-			if(!data[i][2]){
+			if(!data[i][3]){
 				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
 		   		$("#showTable").append(newRow);
 			}else{
-				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
+				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Watch</a></td></tr>");
 		   $("#showTable").append(newRow);
 			}
 		}
