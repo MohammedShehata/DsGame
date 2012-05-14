@@ -1,3 +1,6 @@
+<p><%= "X      = " + @game.user1.name %></p>
+<p><%= "O      = " + @game.user2.name %></p>
+
 <table border="1">
 	<tr>
 		<td id="e1" style="width: 20px;height: 20px" ></td>
@@ -15,3 +18,27 @@
 		<td id="e9" style="width: 20px;height: 20px" ></td>
 	</tr>
 </table>
+<p id="result" ></p>
+<script type="text/javascript">
+var changesCheck = setInterval(function(){
+			$.getJSON('/games/changes.json?game=' + <%= @game.id %>
+			, function(data) {
+				for(var i = 1; i < data.length; i++) {
+					if(data[i-1] == null)
+						document.getElementById("e" + i).innerHTML = '';
+					else
+						document.getElementById("e" + i).innerHTML = data[i-1];
+				};
+				if(data[data.length-1]=="X_Win"){
+						// window.clearInterval(changesCheck);
+						document.getElementById("result").innerHTML="You Lost";
+					}else if(data[data.length-1]=="O_Win"){
+						// window.clearInterval(changesCheck);
+						document.getElementById("result").innerHTML="You Won";
+					}else if(data[data.length-1]=="Draw"){
+						// window.clearInterval(changesCheck);
+						document.getElementById("result").innerHTML="Game Draw";
+					}
+			});
+		,1000);
+</script>
