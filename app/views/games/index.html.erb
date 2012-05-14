@@ -46,7 +46,7 @@
 			<td><%= game.id %></td>
 			<td><%= game.user1.name %></td>
 			<td><%= game.user2.name %></td>
-			<td><%= link_to 'watch', "/games/join?id=" + game.id.to_s%>
+			<td><%= link_to 'watch', "/games/watch?id=" + game.id.to_s%>
 			</td>
 		</tr>
 		<% end %>
