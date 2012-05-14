@@ -3,6 +3,7 @@
 
 function check(data){
 	var idArr = [];
+	  gameID=data[i][0];
 	var trs = document.getElementsByTagName("tr");
 	for(var i=0;i<trs.length;i++)
 	{
@@ -27,7 +28,6 @@ function check(data){
 	  }
 	};
 	for (var i=0; i < data.length; i++) {
-	  gameID=data[i][0];
 	  user1Name=data[i][1];
 	  //true == watch else join data[i][2]
 		if(document.getElementById(gameID))
