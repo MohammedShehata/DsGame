@@ -5,6 +5,11 @@ class Game < ActiveRecord::Base
   has_one :board
   
   def fat7y
-    [self.id, self.user1.name, self.started]
+    if(self.started)
+      [self.id, self.user1.name, self.user2.name, self.started]
+    else
+      [self.id, self.user1.name, nil, self.started]
+    end
   end
+  
 end
