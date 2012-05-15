@@ -62,8 +62,9 @@ function display (gameid,index) {
 		if(document.getElementById("e"+index).innerHTML==""){  	
 		  	if(user==1){
 		  		document.getElementById("e"+index).innerHTML="X";
-		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=X', function(data)
+		  		$.getJSON('/games/play.json', {'game':gameid, 'index':index, 'data':'X'}, function(data)
 				{
+				    confirm(data);
 					if(data=="X_Win"){
 						gameEnded=true;
 						document.getElementById("result").innerHTML="You won";
@@ -77,8 +78,9 @@ function display (gameid,index) {
 				});
 		  	}else{
 		  		document.getElementById("e"+index).innerHTML="O";
-		  		$.getJSON('/games/play.json?game='+gameid+'&index='+index+'&data=O', function(data)
+		  		$.getJSON('/games/play.json', {'game':gameid, 'index':index, 'data':'O'}, function(data)
 				{
+				    confirm(data);
 					if(data=="X_Win"){
 						gameEnded=true;
 						document.getElementById("result").innerHTML="You lost";
