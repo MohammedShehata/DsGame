@@ -91,8 +91,8 @@ function display (gameid,index) {
 					}
 				});
 		  	}
-	  	}
 	  	board[index-1]=1;
+	  	}
 		turn=false;
 	  	// changes=false;
 	  }
