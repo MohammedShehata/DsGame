@@ -1,23 +1,33 @@
-Game ID : <%= game.id %>
+<div class="badge badge-primary" >Game ID : <%= game.id %></div>
 
-<table border="1">
-	<tr>
-		<td id="e1" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'1')"></td>
-		<td id="e2" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'2')"></td>
-		<td id="e3" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'3')"></td>
-	</tr>
-	<tr>
-		<td id="e4" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'4')"></td>
-		<td id="e5" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'5')"></td>
-		<td id="e6" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'6')"></td>
-	</tr>
-	<tr>
-		<td id="e7" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'7')"></td>
-		<td id="e8" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'8')"></td>
-		<td id="e9" style="width: 20px;height: 20px" onclick="display(<%= game.id %>,'9')"></td>
-	</tr>
-</table>
-
+	<div class="row">
+		<br/>
+		<div class="span3"><br/> </div>
+		<div class="span6">
+	 <div class="pagination pagination-centered">
+    <ul>
+    <li onclick="display(<%= game.id %>,'1')"><a id="e1" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+    <li onclick="display(<%= game.id %>,'2')"><a id="e2" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+    <li onclick="display(<%= game.id %>,'3')"><a id="e3" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+   </ul>
+   </div>
+   <div class="pagination pagination-centered">
+    <ul>
+    <li onclick="display(<%= game.id %>,'4')"><a id="e4" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+    <li onclick="display(<%= game.id %>,'5')"><a id="e5" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+    <li onclick="display(<%= game.id %>,'6')"><a id="e6" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+   </ul>
+   </div>
+   <div class="pagination pagination-centered">
+    <ul>
+    <li onclick="display(<%= game.id %>,'7')"><a id="e7" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+    <li onclick="display(<%= game.id %>,'8')"><a id="e8" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+    <li onclick="display(<%= game.id %>,'9')"><a id="e9" style="width: 20px;height: 50px;font-size: x-large"></a></li>
+   </ul>
+   </div>
+   <br/>
+</div>
+</div>
 
 
 

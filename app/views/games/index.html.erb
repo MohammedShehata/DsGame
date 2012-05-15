@@ -24,10 +24,10 @@
 			<td><%= game.user1.name %></td>
 			<% if game.started %>
 			<td><%= game.user2.name %></td>
-			<td id="td<%= game.id %>"><%= link_to 'Watch', "/games/watch?id=" + game.id.to_s, :class =>'btn btn-small btn-success' %>
+			<td id="td<%= game.id %>"><%= link_to 'Watch', "/games/watch?id=" + game.id.to_s, :class =>'test btn btn-small btn-success' %>
 			<% else %>
 			<td id="u2<%= game.id %>" ></td>
-			<td id="td<%= game.id %>" ><%= link_to 'Join', "/games/join?id=" + game.id.to_s, :class =>'btn btn-small btn-primary' %>
+			<td id="td<%= game.id %>" ><%= link_to 'Join', "/games/join?id=" + game.id.to_s, :class =>'test btn btn-small btn-primary' %>
 			<% end %>
 			</td>
 		</tr>

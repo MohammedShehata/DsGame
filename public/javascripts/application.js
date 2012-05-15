@@ -16,10 +16,14 @@ function check(data){
 	  		gout=true;
 	  		var isWatch=data[j][3];
 	  		if(!isWatch){
-	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a>"
+	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/join?id="+gameID+"' class='test btn btn-small btn-primary'>Join</a>"
 			}else{
-				document.getElementById("td"+gameID).innerHTML ="<a href='/games/watch?id="+gameID+"' class='btn btn-small btn-success'>Watch</a>"
+				document.getElementById("td"+gameID).innerHTML ="<a href='/games/watch?id="+gameID+"' class='test btn btn-small btn-success'>Watch</a>"
+				try{
 				document.getElementById("u2"+gameID).innerHTML =""+data[j][2];
+				}catch (err){
+					
+				}
 			}
 		}
 	  };
@@ -38,10 +42,10 @@ function check(data){
 		else
 		{
 			if(!data[i][3]){
-				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
+				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='u2"+gameID+"'></td><td id='td"+gameID+"'><a href='/games/join?id="+gameID+"' class='test btn btn-small btn-primary'>Join</a></td></tr>");
 		   		$("#showTable").append(newRow);
 			}else{
-				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td>"+user2Name+"</td><td id='td"+gameID+"'>><a href='/games/watch?id="+gameID+"' class='btn btn-small btn-success'>Watch</a></td></tr>");
+				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='u2"+gameID+"'>"+user2Name+"</td><td id='td"+gameID+"'><a href='/games/watch?id="+gameID+"' class='test btn btn-small btn-success'>Watch</a></td></tr>");
 		   $("#showTable").append(newRow);
 			}
 		}

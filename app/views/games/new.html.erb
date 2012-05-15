@@ -1,8 +1,16 @@
-<p><%= "X(you) = " + session[:user].name %></p>
-<p><%= "O      = " %><span id="user2">waiting...!</span></p>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<br/>
+	<p class="badge badge-info" style="font-size: medium;"><%= "X(you) = " + session[:user].name %></p>
+<p class="badge badge-success" style="font-size: medium;"><%= "O      = " %><span id="user2">waiting...!</span></p>
 
 <%= render 'game' ,:game => @game %>
-<p id="result" ></p>
+<br/>
+<p id="result" class="well" ></p>
+</div>
+</div>
+</div>
 <script type="text/javascript">
 	var turn=true;
 	var user=1;
