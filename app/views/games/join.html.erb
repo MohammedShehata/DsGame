@@ -9,43 +9,52 @@
 	var user=2;
 	var time = 3000;
 	var started = true;
-	var changes=false;
 	var gameEnded=false;
-	var turncheck = setInterval(function(){
-	if(!gameEnded){
-		$.getJSON('/games/turn.json?game=' + <%= @game.id %>+'&user='+<%= @game.user2.id %>, function(isMyTurn)
-		{
-		turn=isMyTurn;
-		if(turn && !changes){
-			changes=true;
-		}
-		});
-		}
-	}
-	,time);
 
-	var changesCheck = setInterval(function(){
-		if(changes && !gameEnded){
-			$.getJSON('/games/changes.json?game=' + <%= @game.id %>
-			, function(data) {
-				for(var i = 1; i < data.length; i++) {
-					if(data[i-1] == null)
-						document.getElementById("e" + i).innerHTML = '';
-					else
-						document.getElementById("e" + i).innerHTML = data[i-1];
-				};
-				if(data[data.length-1]=="X_Win"){
+	var board = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+	
+	setInterval(function()
+	{
+		if(!gameEnded)
+		{
+			$.getJSON('/games/changes.json?game=' + <%= @game.id %>, function(data) 
+			{
+				var flag = false;
+				for(var i = 0; i < data.length - 1; i ++)
+				{
+					if(data[i] != null && board[i] == 0)
+					{
+						flag = true;
+						board[i] = 1;
+					}
+				}
+				if(flag)
+				{
+					for(var i = 1; i < data.length; i++) 
+					{
+						if(data[i-1] == null)
+							document.getElementById("e" + i).innerHTML = '';
+						else
+							document.getElementById("e" + i).innerHTML = data[i-1];
+					}
+					if(data[data.length-1]=="X_Win")
+					{
 						gameEnded=true;
 						document.getElementById("result").innerHTML="You Lost";
-					}else if(data[data.length-1]=="O_Win"){
+					}
+					else if(data[data.length-1]=="O_Win")
+					{
 						gameEnded=true;
 						document.getElementById("result").innerHTML="You Won";
-					}else if(data[data.length-1]=="Draw"){
+					}
+					else if(data[data.length-1]=="Draw")
+					{
 						gameEnded=true;
 						document.getElementById("result").innerHTML="Game Draw";
 					}
+					turn = true;
+				}
 			});
-			}
 		}
-		,1000);
+	} ,1000);
 </script>
