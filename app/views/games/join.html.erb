@@ -5,9 +5,8 @@
 				<br/>
 		<p class="badge badge-info" style="font-size: medium;"><%= "X      = " + @game.user1.name %></p>
 	<p class="badge badge-success" style="font-size: medium;"><%= "O(you) = " + session[:user].name %></p>
-	
 	<%= render 'game' ,:game => @game %>
-	
+	<%= link_to "Back", :back %>
 	<p id="result" class="well" ></p>
 	</div>
 	</div>
