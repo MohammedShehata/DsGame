@@ -18,7 +18,8 @@ function check(data){
 	  		if(!isWatch){
 	  			document.getElementById("td"+gameID).innerHTML ="<a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a>"
 			}else{
-				document.getElementById("td"+gameID).innerHTML ="<a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Watch</a>"
+				document.getElementById("td"+gameID).innerHTML ="<a href='/games/watch?id="+gameID+"' class='btn btn-small btn-success'>Watch</a>"
+				document.getElementById("u2"+gameID).innerHTML =""+data[j][2];
 			}
 		}
 	  };
@@ -28,6 +29,7 @@ function check(data){
 	};
 	for (var i=0; i < data.length; i++) {
 	  user1Name=data[i][1];
+	  user2Name=data[i][2];
 	  var gameID=data[i][0];
 	  	//true == watch else join data[i][2]
 		if(document.getElementById(gameID))
@@ -39,7 +41,7 @@ function check(data){
 				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/join?id="+gameID+"' class='btn btn-small btn-primary'>Join</a></td></tr>");
 		   		$("#showTable").append(newRow);
 			}else{
-				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td id='td"+gameID+"'>><a href='/games/watch?id="+gameID+"' class='btn btn-small btn-primary'>Watch</a></td></tr>");
+				var newRow = $("<tr id='"+gameID+"'><td>"+gameID+"</td><td>"+user1Name+"</td><td>"+user2Name+"</td><td id='td"+gameID+"'>><a href='/games/watch?id="+gameID+"' class='btn btn-small btn-success'>Watch</a></td></tr>");
 		   $("#showTable").append(newRow);
 			}
 		}

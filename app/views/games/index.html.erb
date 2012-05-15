@@ -1,11 +1,20 @@
-<p><%= "Hello " + session[:user].name %></p>
-<%= link_to 'New', :action => "new" %>
+<div class="container">
+	<div class="row">
+		<div class="span12">
+		<p class="label label-inverse"><%= "Hello " + session[:user].name %></p>
+		<div class="pagination">
+ <ul>
+ <li><%= link_to 'New', :action => "new" %></li>
+</ul>
+</div>
+
 <table id="showTable" class="table table-striped" >
 	<thead>
 		<tr>
 			<th>Game id</th>
-			<th>UserName</th>
-			<th>Join</th>
+			<th>Player1</th>
+			<th>Player2</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,8 +23,10 @@
 			<td><%= game.id %></td>
 			<td><%= game.user1.name %></td>
 			<% if game.started %>
-			<td id="td<%= game.id %>"><%= link_to 'Watch', "/games/watch?id=" + game.id.to_s%>
+			<td><%= game.user2.name %></td>
+			<td id="td<%= game.id %>"><%= link_to 'Watch', "/games/watch?id=" + game.id.to_s, :class =>'btn btn-small btn-success' %>
 			<% else %>
+			<td id="u2<%= game.id %>" ></td>
 			<td id="td<%= game.id %>" ><%= link_to 'Join', "/games/join?id=" + game.id.to_s, :class =>'btn btn-small btn-primary' %>
 			<% end %>
 			</td>
@@ -36,3 +47,6 @@
 	,time);
 </script>
 
+</div>
+</div>
+</div>
