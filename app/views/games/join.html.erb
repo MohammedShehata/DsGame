@@ -15,7 +15,7 @@
 	
 	setInterval(function()
 	{
-		if(!gameEnded)
+		if(!gameEnded && started)
 		{
 			$.getJSON('/games/changes.json?game=' + <%= @game.id %>, function(data) 
 			{
