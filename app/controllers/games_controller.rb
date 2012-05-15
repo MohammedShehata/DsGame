@@ -95,9 +95,12 @@ class GamesController < ApplicationController
   
   def join
     @game = Game.find params[:id]
-    @game.update_attributes :user2 => session[:user]
-    @game.update_attributes :started =>true
-    #redirect_to "join"  
+    if(@game.user1 == session[:user])
+      redirect_to games_path
+    else
+      @game.update_attributes :user2 => session[:user]
+      @game.update_attributes :started =>true
+    end
   end
    
   def check board

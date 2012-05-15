@@ -96,11 +96,53 @@ function display (gameid,index) {
 	  	board[index-1]=1;
 	  	}
 		turn=false;
-	  	// changes=false;
 	  }
+	  checkEnd(index);
 	}
 	
-	function close()
-	{
-        $.post('/games/close');
-	}
+function close()
+{
+    $.post('/games/close');
+}
+	
+function checkEnd(index)
+{
+    var col = index;
+    var row = index;
+    while((col - 3) > 0)
+        col -= 3;
+    while((row - 1) > 0)
+        row --;
+    
+    if($("#e" + col).html() == $("#e" + (col + 3)).html() &&
+        $("#e" + col).html() == $("#e" + (col + 6)).html() && $("#e" + col).html() != "")
+     {
+         gameEnded = true;
+         $("#result").text("You won");
+     }
+    else if($("#e" + row).html() == $("#e" + (row + 1)).html() &&
+        $("#e" + row).html() == $("#e" + (row + 2)).html()  && $("#e" + row).html() != "")
+     {
+         gameEnded = true;
+         $("#result").text("You won");
+     }
+     else if($("#e1").html() == $("#e5").html() && $("#e1").html() == $("#e9").html() 
+        && $("#e1").html() != "")
+    {
+         gameEnded = true;
+         $("#result").text("You won");
+    }
+     else if($("#e3").html() == $("#e5").html() && $("#e3").html() == $("#e7").html() 
+        && $("#e3").html() != "")
+    {
+         gameEnded = true;
+         $("#result").text("You won");
+    }
+    else if($("#e1").html() != "" && $("#e2").html()  != ""  && $("#e3").html()  != ""  && 
+            $("#e4").html() != "" && $("#e5").html()  != ""  && $("#e6").html()  != ""  && 
+            $("#e7").html() != "" && $("#e8").html()  != ""  && $("#e9").html() != "" )
+    {
+        gameEnded = true;
+        $("#result").text("Game Draw");
+    }
+}	
