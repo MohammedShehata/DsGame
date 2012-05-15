@@ -97,3 +97,8 @@ function display (gameid,index) {
 	  	// changes=false;
 	  }
 	}
+	
+	function close()
+	{
+        $.post('/games/close');
+	}

@@ -68,7 +68,7 @@ class GamesController < ApplicationController
     check_var = check(@board) 
     a.push(check_var)
     if(check_var != "Cont")
-      @board.game.ended = true
+      @board.game.update_attributes :ended => true
     end
     respond_to do |format|
       format.json {render :json => a}
@@ -86,7 +86,7 @@ class GamesController < ApplicationController
     @board.update_attributes "ele" + params[:index] => params[:data]
     check_var = check @board
     if(check_var != "Cont")
-      @board.game.ended = true
+      @board.game.update_attributes :ended => true
     end
     respond_to do |format|
       format.json {render :json => check_var}
@@ -164,5 +164,11 @@ class GamesController < ApplicationController
   
   def watch
     @game = Game.find params[:id]
+  end
+  
+  def close
+    id = session[:user].id
+    games = Game.where("user1_id = ? or user2_id = ?", id, id)
+    games.map{|game| game.update_attributes :ended => true}
   end 
 end

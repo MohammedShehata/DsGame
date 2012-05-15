@@ -1,81 +1,83 @@
-<div class="container">
-	<div class="row">
-		<div class="span12">
-			<br/>
-	<p class="badge badge-info" style="font-size: medium;"><%= "X(you) = " + session[:user].name %></p>
-<p class="badge badge-success" style="font-size: medium;"><%= "O      = " %><span id="user2">waiting...!</span></p>
-
-<%= render 'game' ,:game => @game %>
-<br/>
-<p id="result" class="well" ></p>
-</div>
-</div>
-</div>
-<script type="text/javascript">
-	var turn=true;
-	var user=1;
-	var time = 3000;
-	var started = false;
-	var gameEnded=false;
+<body onbeforeunload="close()">
+	<div class="container">
+		<div class="row">
+			<div class="span12">
+				<br/>
+		<p class="badge badge-info" style="font-size: medium;"><%= "X(you) = " + session[:user].name %></p>
+	<p class="badge badge-success" style="font-size: medium;"><%= "O      = " %><span id="user2">waiting...!</span></p>
 	
-	var board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-	 
-	var interv = setInterval(function()
-	{
-		$.getJSON('/games/isstarted.json?id=' +<%= @game.id %>, function(isstarted)
+	<%= render 'game' ,:game => @game %>
+	<br/>
+	<p id="result" class="well" ></p>
+	</div>
+	</div>
+	</div>
+	<script type="text/javascript">
+		var turn=true;
+		var user=1;
+		var time = 3000;
+		var started = false;
+		var gameEnded=false;
+		
+		var board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+		 
+		var interv = setInterval(function()
 		{
-			if(isstarted[0])
+			$.getJSON('/games/isstarted.json?id=' +<%= @game.id %>, function(isstarted)
 			{
-				started = true;
-				document.getElementById("user2").innerHTML = isstarted[1] 
-				window.clearInterval(interv)
-			}
-		});
-	}
-	,time);
-
-	setInterval(function()
-	{
-		if(!gameEnded && started)
-		{
-			$.getJSON('/games/changes.json?game=' + <%= @game.id %>, function(data) 
-			{
-				var flag = false;
-				for(var i = 0; i < data.length - 1; i ++)
+				if(isstarted[0])
 				{
-					if(data[i] != null && board[i] == 0)
-					{
-						flag = true;
-						board[i] = 1;
-					}
-				}
-				if(flag)
-				{
-					for(var i = 1; i < data.length; i++)
-				 	{
-						if(data[i-1] == null)
-							document.getElementById("e" + i).innerHTML = '';
-						else
-							document.getElementById("e" + i).innerHTML = data[i-1];
-					}
-					if(data[data.length-1]=="X_Win")
-					{
-						gameEnded=true;
-						document.getElementById("result").innerHTML="You Won";
-					}
-					else if(data[data.length-1]=="O_Win")
-					{
-						gameEnded=true;
-						document.getElementById("result").innerHTML="You Lost";
-					}
-					else if(data[data.length-1]=="Draw")
-					{
-						gameEnded=true;
-						document.getElementById("result").innerHTML="Game Draw";
-					}
-					turn = true;
+					started = true;
+					document.getElementById("user2").innerHTML = isstarted[1] 
+					window.clearInterval(interv)
 				}
 			});
 		}
-	} ,1000);
-</script>
+		,time);
+	
+		setInterval(function()
+		{
+			if(!gameEnded && started)
+			{
+				$.getJSON('/games/changes.json?game=' + <%= @game.id %>, function(data) 
+				{
+					var flag = false;
+					for(var i = 0; i < data.length - 1; i ++)
+					{
+						if(data[i] != null && board[i] == 0)
+						{
+							flag = true;
+							board[i] = 1;
+						}
+					}
+					if(flag)
+					{
+						for(var i = 1; i < data.length; i++)
+					 	{
+							if(data[i-1] == null)
+								document.getElementById("e" + i).innerHTML = '';
+							else
+								document.getElementById("e" + i).innerHTML = data[i-1];
+						}
+						if(data[data.length-1]=="X_Win")
+						{
+							gameEnded=true;
+							document.getElementById("result").innerHTML="You Won";
+						}
+						else if(data[data.length-1]=="O_Win")
+						{
+							gameEnded=true;
+							document.getElementById("result").innerHTML="You Lost";
+						}
+						else if(data[data.length-1]=="Draw")
+						{
+							gameEnded=true;
+							document.getElementById("result").innerHTML="Game Draw";
+						}
+						turn = true;
+					}
+				});
+			}
+		} ,1000);
+	</script>
+</body>

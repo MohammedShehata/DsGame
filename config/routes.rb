@@ -6,6 +6,7 @@ DsGame::Application.routes.draw do
   match "games/play" => "games#play"
   match "games/join" => "games#join"
   match "games/watch" => "games#watch"
+  match "games/close" => "games#close"
   
   resources :users
   resources :games
